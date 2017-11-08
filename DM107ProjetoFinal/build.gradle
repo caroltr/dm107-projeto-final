@@ -1,0 +1,38 @@
+apply plugin: 'java'
+apply plugin: "war"
+apply plugin: 'com.bmuschko.tomcat'
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+dependencies {
+	providedCompile "javax.servlet:javax.servlet-api:3.1.0"
+	
+	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.43'
+	compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.0.1'
+	
+	compile 'org.glassfish.jersey.containers:jersey-container-servlet:2.25'
+    compile 'org.glassfish.jersey.core:jersey-client:2.25'
+    compile 'org.glassfish.jersey.media:jersey-media-json-jackson:2.25'
+	
+	compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
+
+	def tomcatVersion = '7.0.57'
+	
+	tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+	"org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}"
+	tomcat("org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}") {
+		exclude group: 'org.eclipse.jdt.core.compiler', module: 'ecj'
+	}
+}
+
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath 'com.bmuschko:gradle-tomcat-plugin:2.0'
+	}
+}
