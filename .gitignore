@@ -37,3 +37,14 @@ hs_err_pid*
 target/
 
 # End of https://www.gitignore.io/api/java,java-web,code-java
+
+
+.gradle
+build/
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+.settings
+bin
+build
+.metadata/
