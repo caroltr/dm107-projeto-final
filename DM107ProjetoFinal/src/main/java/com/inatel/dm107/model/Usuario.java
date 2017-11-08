@@ -4,9 +4,7 @@ public class Usuario {
 	
 	private String usuario;
 	private String senha;
-	
-	public Usuario() {}
-	
+		
 	public Usuario(String usuario, String senha) {
 
 		this.usuario = usuario;

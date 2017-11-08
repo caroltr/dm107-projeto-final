@@ -28,8 +28,6 @@ public class RestAuthenticationFilter implements javax.servlet.Filter {
 			AuthenticationService authenticationService = new AuthenticationService();
 
 			boolean authenticationStatus = authenticationService.authenticate(authCredentials);
-
-			System.out.println("autenticado? " + ( authenticationStatus ? "true" : "false"));
 			
 			if (authenticationStatus) {
 				chain.doFilter(request, response);

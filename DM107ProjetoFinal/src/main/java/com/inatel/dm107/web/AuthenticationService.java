@@ -3,17 +3,17 @@ package com.inatel.dm107.web;
 import java.io.IOException;
 import java.util.Base64;
 
+import com.inatel.dm107.model.Usuario;
+import com.inatel.dm107.model.UsuarioDAO;
+
 public class AuthenticationService {
 	
 	public boolean authenticate(String credentials) {
-
-		System.out.println("Credentials: " + credentials);
 
 		if (null == credentials)
 			return false;
 		
 		// extraindo o valor vindo do header "Basic encodedstring" for Basic
-		// Exemplo: "Basic YWRtaW46YWRtaW4="
 		final String encodedUserPassword = credentials.replaceFirst("Basic" + " ", "");
 		System.out.println("encodedUserPassword: " + encodedUserPassword);
 		
@@ -31,9 +31,9 @@ public class AuthenticationService {
 		final String username = usernameAndPassSplit[0];
 		final String password = usernameAndPassSplit[1];
 
-		// Estamos usando um unico usuario e senha, aqui poderia ser feito via banco de
-		// dados
-		boolean authenticationStatus = "eu".equals(username) && "eu".equals(password);
+		UsuarioDAO usuarioDao = new UsuarioDAO();
+		boolean authenticationStatus = usuarioDao.usuarioExiste(new Usuario(username, password));
+
 		return authenticationStatus;
 	}
 }

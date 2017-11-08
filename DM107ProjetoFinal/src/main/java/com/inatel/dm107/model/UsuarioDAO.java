@@ -4,35 +4,40 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 import com.inatel.dm107.database.JdbcAcesso;
 
 public class UsuarioDAO {
 
-	public ArrayList<Usuario> listar() {
+	/**
+	 * Retorna se um usuario existe no banco de dados ou não, verificando se o nome de
+	 * usuario e senha passados conferem.
+	 * 
+	 * @param usuario
+	 *            objeto usuario contendo o nome de usuario e senha
+	 * @return <code>true</code> se o nome de usuario e sua respectiva senha estão
+	 *         cadastrados no banco de dados, <code>false</code> caso contrário.
+	 */
+	public boolean usuarioExiste(Usuario usuario) {
 
-		ArrayList<Usuario> usuarios = new ArrayList<>();
-
-		String sql = "SELECT * FROM usuario";
+		String sql = "SELECT * FROM usuario WHERE usuario = '" + usuario.getUsuario() + "' AND senha = '"
+				+ usuario.getSenha() + "'";
 
 		try (Connection connection = JdbcAcesso.connect();
 				Statement sttm = connection.createStatement();
 				ResultSet rs = sttm.executeQuery(sql);) {
 
-			while (rs.next()) {
-
-				String usuario = rs.getString("usuario");
-				String senha = rs.getString("senha");
-
-				usuarios.add(new Usuario(usuario, senha));
+			if (rs.next()) {
+				System.out.println("TRUE");
+				return true;
+			} else {
+				System.out.println("FALSE");
 			}
 
 		} catch (SQLException e) {
-			// e.printStackTrace();
-			System.err.println("Ocorreu um erro no acesso ao banco de dados: " + e.getMessage());
+			e.printStackTrace();
 		}
 
-		return usuarios;
+		return false;
 	}
 }

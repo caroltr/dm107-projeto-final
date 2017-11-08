@@ -4,23 +4,14 @@ import java.sql.Date;
 
 public class Entrega {
 
-	private int numPedido;
-	private int idCliente;
+	private int numPedido; // obrigatório
+	private int idCliente; // obrigatório
 	private String nomeRecebedor;
 	private String cpfRecebedor;
 	private Date dataHoraEntrega;
-	
+
 	public Entrega() {}
 	
-	public Entrega(int numPedido, int idCliente, String nomeRecebedor, String cpfRecebedor, Date dataHoraEntrega) {
-
-		this.numPedido = numPedido;
-		this.idCliente = idCliente;
-		this.nomeRecebedor = nomeRecebedor;
-		this.cpfRecebedor = cpfRecebedor;
-		this.dataHoraEntrega = dataHoraEntrega;
-	}
-
 	public int getNumPedido() {
 		return numPedido;
 	}
@@ -59,5 +50,12 @@ public class Entrega {
 
 	public void setDataHoraEntrega(Date dataHoraEntrega) {
 		this.dataHoraEntrega = dataHoraEntrega;
-	}	
+	}
+
+	@Override
+	public String toString() {
+		return "Entrega [numPedido=" + numPedido + ", idCliente=" + idCliente + ", nomeRecebedor=" + nomeRecebedor
+				+ ", cpfRecebedor=" + cpfRecebedor + ", dataHoraEntrega=" + dataHoraEntrega + "]";
+	}
+	
 }

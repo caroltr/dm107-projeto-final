@@ -12,15 +12,6 @@ public class JdbcAcesso {
 	private static final String username = "root";
 	private static final String password = "admin";
 
-	/*static {		
-		try {
-			Class.forName("org.postgresql.Driver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			System.exit(1);
-		}
-	}*/
-
 	/**
 	 * Conecta ao banco de dados MySQL
 	 *
