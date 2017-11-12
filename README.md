@@ -12,6 +12,8 @@ nome_recebedor    |
 cpf_recebedor     | 
 data_hora_entrega | 
 
+-------------------------------------------------------
+
 ### Projeto em Java
 
 Utilizados Gradle e Jersey.
