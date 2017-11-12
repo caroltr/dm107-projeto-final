@@ -25,6 +25,20 @@
         die();
     }
 
+    // Adicionando autenticação
+    // https://github.com/tuupola/slim-basic-auth
+
+    // Buscar usuários do banco de dados
+    $usuarios = $db->usuario();
+    $arrayUsuarios = array(); // HashMap com key = usuario e value = senha
+    foreach($usuarios as $usuario) {
+        $arrayUsuarios[$usuario['usuario']] = $usuario['senha'];
+    }
+
+    $app->add(new \Slim\Middleware\HttpBasicAuthentication([
+		"users" => $arrayUsuarios
+	]));
+
     // Remove uma entrega do banco de dados
     $app->delete('/entrega/delete/{numPedido}', function(Request $request, Response $response) use ($db) {
         
@@ -50,9 +64,15 @@
     // Edita uma entrega do banco de dados
     $app->put('/entrega/update', function(Request $request, Response $response) use ($db) {
         
-        $newEntrega = $request->getBody();
         $data = $request->getParsedBody();
 
+        $dadosValidos = isset($data['numPedido']) && // dado obrigatório para reconhecer o pedido
+        isset($data['nomeRecebedor']) && isset($data['cpfRecebedor']) && isset($data['dataHoraEntrega']); // dados obrigatórios para edição
+
+        if(!$dadosValidos) {
+            return $response->withStatus(400);
+        }
+        
         $numPedido = $data['numPedido'];
         $idCliente = $data['idCliente'];
         $nomeRecebedor = $data['nomeRecebedor'];
