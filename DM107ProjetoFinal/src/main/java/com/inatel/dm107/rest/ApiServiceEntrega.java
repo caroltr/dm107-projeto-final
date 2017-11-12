@@ -12,8 +12,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import com.inatel.dm107.model.Entrega;
-import com.inatel.dm107.model.EntregaDAO;
+import com.inatel.dm107.database.EntregaDAO;
+import com.inatel.dm107.entities.Entrega;
 
 @Path("/entrega")
 public class ApiServiceEntrega {
@@ -51,22 +51,21 @@ public class ApiServiceEntrega {
 	@POST
 	@Path("/criar")
 	@Consumes({MediaType.APPLICATION_JSON})
-	public Response criarEntrega(Entrega entrega) {
-
-		EntregaDAO entregaDao = new EntregaDAO();
+	public Response criarEntrega(Entrega entrega) {		
 		
-		// TODO verificar forma melhor de setar estes campos como obrigatórios
-		System.out.println("Entrega: " + entrega.toString());
+		System.out.println("Entrega: " + entrega.getDataHoraEntrega());
+		
+		EntregaDAO entregaDao = new EntregaDAO();
 		
 		if(entrega.getNumPedido() == 0 || 
 				entrega.getIdCliente() == 0) {
 			
 			return Response
-					.status(422) // Unprocessed entity
+					.status(Status.BAD_REQUEST)
 					.build(); 
 		}
 		
-		// TODO verificar forma melhor de setar que número do pedido deve ser único no banco.
+		// Verifica se pedido já existe no banco
 		try {
 			if(entregaDao.obter(entrega.getNumPedido()) != null) {
 				

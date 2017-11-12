@@ -1,10 +1,10 @@
-package com.inatel.dm107.web;
+package com.inatel.dm107.auth;
 
 import java.io.IOException;
 import java.util.Base64;
 
-import com.inatel.dm107.model.Usuario;
-import com.inatel.dm107.model.UsuarioDAO;
+import com.inatel.dm107.database.UsuarioDAO;
+import com.inatel.dm107.entities.Usuario;
 
 public class AuthenticationService {
 	

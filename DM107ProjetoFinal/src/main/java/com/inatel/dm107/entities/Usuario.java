@@ -1,4 +1,4 @@
-package com.inatel.dm107.model;
+package com.inatel.dm107.entities;
 
 public class Usuario {
 	

@@ -1,4 +1,4 @@
-package com.inatel.dm107.web;
+package com.inatel.dm107.auth;
 
 import java.io.IOException;
 

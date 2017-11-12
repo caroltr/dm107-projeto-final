@@ -1,4 +1,4 @@
-package com.inatel.dm107.model;
+package com.inatel.dm107.database;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.inatel.dm107.database.JdbcAcesso;
+import com.inatel.dm107.entities.Entrega;
 
 public class EntregaDAO {
 
