@@ -78,7 +78,7 @@ CREATE DATABASE IF NOT EXISTS `dm107_projeto_final`;
 
 USE `dm107_projeto_final`;
 
-CREATE TABLE IF NOT EXISTS `tarefas` (
+CREATE TABLE IF NOT EXISTS `entrega` (
   `id` integer NOT NULL auto_increment,
   `num_pedido` integer NOT NULL default 0,
   `id_cliente` integer NOT NULL default 0,
