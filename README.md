@@ -26,6 +26,19 @@ Utilizados Gradle e Jersey.
 [GET]   /api/entrega/{numeroPedido}
 ```
 
+**Json exemplo para _body_ da Criação**:
+```
+{
+  "numPedido": 15,
+  "idCliente": 1,
+  "nomeRecebedor": "caroline",
+  "cpfRecebedor": "123.123.123-00",
+  "dataHoraEntrega": "2017-11-12"
+}
+```
+
+-------------------------------------------------------
+
 ### Projeto em PHP
 
 Utilizados Slim e NotORM.
@@ -40,9 +53,7 @@ Utilizados Slim e NotORM.
 [DELETE]  /entrega/delete/{numeroPedido}
 ```
 
--------------------------------------------------------
-
-**Json exemplo para _body_ da atualização e criação**:
+**Json exemplo para _body_ da atualização**:
 ```
 {
   "numPedido": 1,
